@@ -1,0 +1,12 @@
+# Swift Package Manager build output
+.build/
+.swiftpm/
+
+# Compiled binary inside the dev-testing .app bundle (regenerate via docs/02-技术方案.md)
+NoteWidget.app/Contents/MacOS/*
+
+# Claude Code local session/config files
+.claude/
+
+# macOS
+.DS_Store
