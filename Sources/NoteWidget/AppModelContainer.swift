@@ -5,7 +5,7 @@ enum AppModelContainer {
         do {
             return try ModelContainer(for: Note.self, Tag.self)
         } catch {
-            fatalError("无法创建本地数据库: \(error)")
+            fatalError("Failed to create local database: \(error)")
         }
     }()
 }

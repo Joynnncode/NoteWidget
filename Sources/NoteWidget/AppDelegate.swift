@@ -15,6 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         NSApp.setActivationPolicy(.regular)
 
         seedDefaultTagsIfNeeded()
+        renameLegacyChineseTagsIfNeeded()
 
         let widgetView = FloatingWidgetView()
             .modelContainer(AppModelContainer.shared)
@@ -46,7 +47,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             backing: .buffered,
             defer: false
         )
-        list.title = "我的笔记"
+        list.title = "My Notes"
         list.isFloatingPanel = true
         list.level = .floating
         list.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary]
@@ -97,8 +98,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let context = AppModelContainer.shared.mainContext
         let count = (try? context.fetchCount(FetchDescriptor<Tag>())) ?? 0
         guard count == 0 else { return }
-        context.insert(Tag(name: "法语学习", colorHex: "#FF6B9D"))
-        context.insert(Tag(name: "常规", colorHex: "#8E8E93"))
+        context.insert(Tag(name: "French Learning", colorHex: "#FF6B9D"))
+        context.insert(Tag(name: "General", colorHex: "#8E8E93"))
+        try? context.save()
+    }
+
+    /// 早期版本的默认标签是中文名字，这里做一次性改名，切到全英文界面。
+    private func renameLegacyChineseTagsIfNeeded() {
+        let context = AppModelContainer.shared.mainContext
+        guard let tags = try? context.fetch(FetchDescriptor<Tag>()) else { return }
+        for tag in tags {
+            if tag.name == "法语学习" { tag.name = "French Learning" }
+            if tag.name == "常规" { tag.name = "General" }
+        }
         try? context.save()
     }
 }

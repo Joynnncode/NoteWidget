@@ -8,7 +8,7 @@ struct TagFilterBar: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                pill(title: "全部", color: .brandPink, isSelected: selectedTag == nil) {
+                pill(title: "All", color: .brandPink, isSelected: selectedTag == nil) {
                     selectedTag = nil
                 }
                 ForEach(tags) { tag in

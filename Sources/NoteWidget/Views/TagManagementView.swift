@@ -11,7 +11,7 @@ struct TagManagementView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("管理标签")
+            Text("Manage Tags")
                 .font(.system(.headline, design: .rounded))
 
             List {
@@ -30,18 +30,18 @@ struct TagManagementView: View {
                             Image(systemName: "trash")
                         }
                         .buttonStyle(.plain)
-                        .help("删除标签（用到这个标签的笔记会变成未分类）")
+                        .help("Delete tag (notes using it will become untagged)")
                     }
                 }
             }
             .frame(minHeight: 160)
 
             HStack {
-                TextField("新标签名称", text: $newTagName)
+                TextField("New tag name", text: $newTagName)
                     .textFieldStyle(.roundedBorder)
                 ColorPicker("", selection: $newTagColor)
                     .labelsHidden()
-                Button("添加", action: addTag)
+                Button("Add", action: addTag)
                     .buttonStyle(.borderedProminent)
                     .tint(Color.brandPink)
                     .disabled(newTagName.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -49,7 +49,7 @@ struct TagManagementView: View {
 
             HStack {
                 Spacer()
-                Button("完成") { dismiss() }
+                Button("Done") { dismiss() }
             }
         }
         .padding(16)

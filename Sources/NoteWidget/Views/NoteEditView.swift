@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 import SwiftData
 
@@ -8,10 +9,24 @@ struct NoteEditView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("编辑笔记")
+            Text("Edit Note")
                 .font(.system(.headline, design: .rounded))
 
-            TextField("笔记内容", text: $note.text, axis: .vertical)
+            if let imageData = note.imageData {
+                ZStack(alignment: .topTrailing) {
+                    ThumbnailImageView(imageData: imageData, maxHeight: 120)
+                    Button {
+                        note.imageData = nil
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.white, .black.opacity(0.6))
+                    }
+                    .buttonStyle(.plain)
+                    .padding(4)
+                }
+            }
+
+            TextField("", text: $note.text, axis: .vertical)
                 .textFieldStyle(.plain)
                 .lineLimit(6...20)
                 .padding(8)
@@ -26,7 +41,7 @@ struct NoteEditView: View {
 
             HStack {
                 Spacer()
-                Button("完成") {
+                Button("Done") {
                     try? modelContext.save()
                     dismiss()
                 }

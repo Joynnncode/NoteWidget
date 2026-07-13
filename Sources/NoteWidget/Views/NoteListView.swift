@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 import SwiftData
 
@@ -21,26 +22,34 @@ struct NoteListView: View {
                     ForEach(filteredNotes) { note in
                         HStack(alignment: .top, spacing: 12) {
                             VStack(alignment: .leading, spacing: 6) {
-                                Text(note.text)
-                                    .lineLimit(3)
-                                HStack {
-                                    if let tag = note.tag {
-                                        Text(tag.name)
-                                            .font(.caption2)
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 2)
-                                            .background(Color(hex: tag.colorHex).opacity(0.2))
-                                            .foregroundStyle(Color(hex: tag.colorHex))
-                                            .clipShape(Capsule())
-                                    }
-                                    Text(note.createdAt, style: .relative)
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
+                                if let imageData = note.imageData {
+                                    ThumbnailImageView(imageData: imageData, maxHeight: 120)
                                 }
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                editingNote = note
+
+                                VStack(alignment: .leading, spacing: 6) {
+                                    if !note.text.isEmpty {
+                                        Text(note.text)
+                                            .lineLimit(3)
+                                    }
+                                    HStack {
+                                        if let tag = note.tag {
+                                            Text(tag.name)
+                                                .font(.caption2)
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 2)
+                                                .background(Color(hex: tag.colorHex).opacity(0.2))
+                                                .foregroundStyle(Color(hex: tag.colorHex))
+                                                .clipShape(Capsule())
+                                        }
+                                        Text(note.createdAt, style: .relative)
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    editingNote = note
+                                }
                             }
 
                             Spacer()
@@ -52,7 +61,7 @@ struct NoteListView: View {
                             }
                             .buttonStyle(.plain)
                             .foregroundStyle(.secondary)
-                            .help("删除这条笔记")
+                            .help("Delete this note")
                         }
                         .padding(16)
                         .background(
