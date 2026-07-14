@@ -1,24 +1,24 @@
-# 项目说明（给 Claude Code 看的工作指引）
+# Project Notes (working guide for Claude Code)
 
-## 项目是什么
+## What this project is
 
-Mac 上的浮动便签 App（悬浮置顶，方便看视频/浏览网页时随手记笔记，笔记按时间倒序保存）。用户不懂代码，是完全非技术背景，需要用简单、清晰的语言沟通，每一步都要有明确的运行验证，不能只靠"编译通过"就当作完成。
+A floating sticky-note app for Mac (always-on-top, for jotting down notes while watching videos/browsing the web; notes are saved sorted newest-first). The user has no coding background and is fully non-technical — communicate in simple, clear language, and every step needs concrete, run-it-and-check verification; a successful compile alone is never enough to call something done.
 
-## 标准文件路径
+## Standard file paths
 
-- **需求文档**：`docs/01-需求文档.md` —— 功能需求、使用场景、明确不做的事情
-- **技术方案**：`docs/02-技术方案.md` —— 技术栈、工程结构、关键技术点（悬浮置顶、全局快捷键、数据模型等）
-- **设计规范**：`docs/03-设计规范.md` —— 粉色主题、字体、间距、界面元素规范
-- **执行步骤**：`docs/04-执行步骤.md` —— 分阶段任务清单，标注当前进度，每次开发前后都要看/更新这个文件
-- **开发日志**：`dev-log/YYYY-MM-DD.md` —— 每天的完成事项 + 待办事项，规范见 `dev-log/README.md`
+- **Requirements**: `docs/01-requirements.md` — feature requirements, usage scenarios, explicitly out-of-scope items
+- **Technical design**: `docs/02-technical-design.md` — tech stack, project structure, key technical points (staying on top, global shortcut, data model, etc.)
+- **Design spec**: `docs/03-design-spec.md` — pink theme, fonts, spacing, UI element conventions
+- **Execution plan**: `docs/04-execution-plan.md` — staged task checklist, marks current progress; check/update this before and after every dev session
+- **Dev log**: `dev-log/YYYY-MM-DD.md` — each day's done items + to-dos; conventions in `dev-log/README.md`
 
-## 工作方式（重要）
+## How to work (important)
 
-1. **每次只推进一小步**：严格按 `docs/04-执行步骤.md` 里的阶段顺序推进，不要一次性跨阶段实现一堆功能。每完成一小步就要能实际运行验证，确认没问题再继续。
-2. **每次开发session开始前**：先看 `docs/04-执行步骤.md` 的"当前所在位置"，了解上次做到哪、下一步是什么；也可以看最近的 `dev-log/` 日志。
-3. **每次开发告一段落后**：
-   - 更新 `docs/04-执行步骤.md` 里对应阶段的勾选状态和"当前所在位置"
-   - 在 `dev-log/` 新建或更新当天的日志文件，记录"今日完成"和"待办事项"
-4. **面向非技术用户沟通**：解释进展/问题时用大白话，避免不必要的术语；涉及需要用户操作的步骤（比如 Xcode 设置、Apple ID 登录）要给出清晰的逐步指引。
-5. **验证优先于自称完成**：每个阶段完成后，必须实际运行 App 验证对应的行为（见 `docs/04-执行步骤.md` 每个阶段的"验证"项），不能仅凭编译通过就报告完成。
-6. **需求变化时**：如果用户提出新需求或修改想法，先更新 `docs/01-需求文档.md`，必要时同步更新技术方案/设计规范，再动代码。
+1. **Advance one small step at a time**: strictly follow the stage order in `docs/04-execution-plan.md` — don't implement a pile of features across multiple stages in one go. After each small step, actually run and verify it before continuing.
+2. **Before starting each dev session**: first check "Current status" in `docs/04-execution-plan.md` to see where things left off and what's next; recent `dev-log/` entries are also useful.
+3. **After wrapping up a chunk of work**:
+   - Update the checkbox states and "Current status" for the relevant stage in `docs/04-execution-plan.md`
+   - Create or update that day's log file in `dev-log/`, recording what was done and what's left to do
+4. **Communicating with a non-technical user**: explain progress/issues in plain language, avoiding unnecessary jargon; for steps that require the user to do something themselves (e.g. Xcode setup, Apple ID login), give clear step-by-step instructions.
+5. **Verification before claiming done**: after finishing each stage, the app must actually be run to verify the corresponding behavior (see the "Verified" item for each stage in `docs/04-execution-plan.md`) — a successful compile alone is not enough to report something as done.
+6. **When requirements change**: if the user proposes a new requirement or a change of direction, update `docs/01-requirements.md` first, updating the technical design/design spec too if needed, before touching any code.

@@ -1,15 +1,15 @@
 import AppKit
 import SwiftUI
 
-/// 无标题栏的 NSPanel 默认不接受成为 key window（无法输入文字）。
+/// A titleless NSPanel doesn't accept becoming key window by default (can't receive text input).
 final class FloatingPanel: NSPanel {
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { false }
 }
 
-/// `acceptsFirstMouse` 是 NSView 的方法，不是窗口的方法：覆写它才能让
-/// "不抢焦点"面板在还没成为 key window 时，第一次点击就直接生效
-/// （而不是先点一下只把窗口激活、第二下才真正点到按钮）。
+/// `acceptsFirstMouse` is an NSView method, not a window one: overriding it lets a
+/// non-activating panel respond to the very first click before it becomes key window
+/// (instead of the first click just activating the window and the second click hitting the button).
 final class ClickThroughHostingView<Content: View>: NSHostingView<Content> {
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 }

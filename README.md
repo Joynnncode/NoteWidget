@@ -40,4 +40,4 @@ SwiftUI + AppKit (custom `NSPanel` for the floating/full-screen behavior) + Swif
 
 ## Project Docs
 
-Detailed requirements, technical design, and the day-by-day build log live in [`docs/`](docs) and [`dev-log/`](dev-log) (in Chinese).
+Detailed requirements, technical design, and the day-by-day build log live in [`docs/`](docs) and [`dev-log/`](dev-log).

@@ -1,7 +1,7 @@
 import AppKit
 import SwiftUI
 
-/// 缩略图展示：点一下可以放大看完整图片。
+/// Thumbnail display: tap to view the full-size image.
 struct ThumbnailImageView: View {
     let imageData: Data
     var maxHeight: CGFloat = 80

@@ -1,10 +1,11 @@
 import AppKit
 import SwiftUI
 
-/// 自己写的多行输入框，替代 SwiftUI 自带的 TextField(axis: .vertical) 和 TextEditor：
-/// 前者在这个项目里按 Enter 会把已输入的文字全选而不是换行；
-/// 后者在这台机器上有渲染裁切的 bug（见 docs/04-执行步骤.md 阶段1踩坑记录）。
-/// 直接包一层原生 NSTextView，行为最稳定可控。
+/// A hand-rolled multi-line text field replacing SwiftUI's built-in TextField(axis: .vertical)
+/// and TextEditor: the former selects all text on Enter instead of inserting a newline in this
+/// project, and the latter has a text-clipping rendering bug on this machine (see the stage-1
+/// notes in docs/04-execution-plan.md). Wrapping a plain NSTextView directly is the most
+/// predictable option.
 struct MultilineTextField: NSViewRepresentable {
     @Binding var text: String
 

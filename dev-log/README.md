@@ -1,24 +1,24 @@
-# 开发日志说明
+# Dev Log Guide
 
-每天开发结束（或告一段落）时，在这个文件夹里新建一个当天的日志文件，命名格式：`YYYY-MM-DD.md`。
+At the end of each day's work (or whenever a chunk of work wraps up), create a new log file in this folder named `YYYY-MM-DD.md`.
 
-## 日志格式
+## Log format
 
 ```markdown
-# YYYY-MM-DD 开发日志
+# YYYY-MM-DD Dev Log
 
-## 今日完成
+## Done today
 - ...
 
-## 遇到的问题 / 决定
+## Issues encountered / decisions made
 - ...
 
-## 待办事项（下次继续）
+## To do next
 - ...
 ```
 
-## 用途
+## Purpose
 
-- 让每天的开发进度有据可查，方便回顾"上次做到哪了"。
-- 待办事项要具体，方便下次直接接着做，不用重新想。
-- 对应的整体阶段进度请看 [../docs/04-执行步骤.md](../docs/04-执行步骤.md)（这里是"每天做了什么"，那里是"整个项目走到哪个阶段"）。
+- Keeps a record of daily progress so it's easy to look back and see "where did we leave off."
+- To-do items should be specific, so the next session can pick up directly without having to re-think it.
+- For overall stage progress, see [../docs/04-execution-plan.md](../docs/04-execution-plan.md) (this folder is "what got done each day"; that doc is "which stage the whole project is at").

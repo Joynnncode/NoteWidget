@@ -38,9 +38,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
         floatingPanel = panel
 
-        // 列表窗口在启动时就预先建好（先隐藏），而不是等第一次点击才建：
-        // 实测如果等到别的 App 已经进入全屏之后才临时创建新窗口，
-        // 系统不会把这个新窗口放进那个全屏 Space；必须提前存在才行。
+        // The list window is created up front (and hidden) at launch instead of on first click:
+        // testing showed that if another app is already in full screen when the window is
+        // first created, the system won't place it into that full-screen space; it must
+        // already exist beforehand.
         let list = FloatingPanel(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 600),
             styleMask: [.nonactivatingPanel, .titled, .closable, .miniaturizable, .resizable],
@@ -86,7 +87,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     }
 
     func windowShouldClose(_ sender: NSWindow) -> Bool {
-        // 悬浮框点关闭时只是隐藏，不销毁，方便点 Dock 图标随时召回
+        // Closing the floating widget only hides it rather than destroying it, so it can
+        // be brought back any time via the Dock icon.
         if sender === floatingPanel {
             sender.orderOut(nil)
             return false
@@ -103,7 +105,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         try? context.save()
     }
 
-    /// 早期版本的默认标签是中文名字，这里做一次性改名，切到全英文界面。
+    /// Early versions seeded default tags with Chinese names; this renames them once when
+    /// switching the UI to all-English.
     private func renameLegacyChineseTagsIfNeeded() {
         let context = AppModelContainer.shared.mainContext
         guard let tags = try? context.fetch(FetchDescriptor<Tag>()) else { return }
