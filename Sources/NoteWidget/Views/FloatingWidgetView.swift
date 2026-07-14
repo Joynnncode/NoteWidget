@@ -75,8 +75,7 @@ struct FloatingWidgetView: View {
                     }
                 }
 
-                TextField("", text: $draftText, axis: .vertical)
-                    .textFieldStyle(.plain)
+                MultilineTextField(text: $draftText)
             }
             .padding(8)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

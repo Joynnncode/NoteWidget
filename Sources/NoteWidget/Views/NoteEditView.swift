@@ -26,9 +26,8 @@ struct NoteEditView: View {
                 }
             }
 
-            TextField("", text: $note.text, axis: .vertical)
-                .textFieldStyle(.plain)
-                .lineLimit(6...20)
+            MultilineTextField(text: $note.text)
+                .frame(minHeight: 120, maxHeight: 200)
                 .padding(8)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
